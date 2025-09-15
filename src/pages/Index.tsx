@@ -6,6 +6,9 @@ import Features from '@/components/Features';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
 import Footer from '@/components/Footer';
+import SocialProof from '@/components/SocialProof';
+import FAQ from '@/components/FAQ';
+import Contact from '@/components/Contact';
 
 const Index = () => {
   return (
@@ -13,9 +16,12 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <SocialProof />
         <Features />
         <Testimonials />
         <Pricing />
+        <FAQ />
+        <Contact />
       </main>
       <Footer />
     </div>

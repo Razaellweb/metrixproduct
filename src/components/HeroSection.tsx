@@ -1,246 +1,195 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Play, Zap, Cpu, Globe, Shield, BarChart3, Code, Terminal, Activity } from 'lucide-react';
+import { ArrowRight, Play, ShieldCheck, Github, Search, BookOpenText, Database, LockKeyhole } from 'lucide-react';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeMetric, setActiveMetric] = useState(0);
-  const [terminalLines, setTerminalLines] = useState(0);
+  const [activeTab, setActiveTab] = useState<'search' | 'index' | 'security'>('search');
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 200);
-
-    // Animate terminal lines
-    const lineTimer = setInterval(() => {
-      setTerminalLines(prev => (prev + 1) % 6);
-    }, 1500);
-
-    // Cycle through metrics
-    const metricTimer = setInterval(() => {
-      setActiveMetric(prev => (prev + 1) % 4);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timer);
-      clearInterval(lineTimer);
-      clearInterval(metricTimer);
-    };
+    const timer = setTimeout(() => setIsVisible(true), 150);
+    const cycle = setInterval(() => {
+      setActiveTab((prev) => (prev === 'search' ? 'index' : prev === 'index' ? 'security' : 'search'))
+    }, 3500);
+    return () => { clearTimeout(timer); clearInterval(cycle); };
   }, []);
 
-  const metrics = [
-    { label: 'Models Deployed', value: '847K+', icon: Cpu, color: 'text-primary' },
-    { label: 'Inference Requests/sec', value: '2.4M', icon: Zap, color: 'text-secondary' },
-    { label: 'Global Regions', value: '23', icon: Globe, color: 'text-accent' },
-    { label: 'Uptime SLA', value: '99.99%', icon: Shield, color: 'text-primary' }
-  ];
-
-  const terminalCommands = [
-    '$ trynia deploy --model gpt-4 --scale auto',
-    '✓ Model deployed in 2.3s',
-    '$ trynia metrics --live',
-    '→ Requests: 12.4k/min | Latency: 89ms',
-    '$ trynia scale --replicas 50',
-    '✓ Scaled to 50 replicas across 3 regions'
+  const valueBullets = [
+    'instant connections to repos and docs: github/gitlab ingest, doc indexing, and continuous sync.',
+    'relevance that developers trust: hybrid keyword + semantic search returns deduped, source‑linked snippets.',
+    'enterprise‑grade security: sso, rbac, token scopes, audit logs, and private deployments.',
+    'made for ai and dev workflows: simple apis/sdks, ide integrations, and usage analytics in a live dashboard.'
   ];
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Animated neural grid background */}
-      <div className="absolute inset-0 neural-grid opacity-20"></div>
-      <div className="absolute inset-0 animated-grid opacity-10"></div>
-      
-      {/* Floating orbs */}
-      <div className="absolute top-20 left-20 w-32 h-32 neural-gradient rounded-full opacity-20 blur-xl animate-float-subtle"></div>
-      <div className="absolute bottom-32 right-32 w-48 h-48 neural-gradient-secondary rounded-full opacity-15 blur-2xl animate-neural-pulse"></div>
-      <div className="absolute top-1/2 left-10 w-24 h-24 bg-accent rounded-full opacity-25 blur-lg animate-infrastructure-glow"></div>
+    <section className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden bg-background">
+      <div className="absolute inset-0 neural-grid opacity-15" />
+      <div className="absolute inset-0 animated-grid opacity-10" />
+
+      <div className="absolute top-20 left-16 w-28 h-28 neural-gradient rounded-full opacity-20 blur-2xl" />
+      <div className="absolute bottom-24 right-16 w-36 h-36 neural-gradient-secondary rounded-full opacity-20 blur-2xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center space-y-8 mb-16">
-          {/* Announcement Badge */}
           <div className={`flex justify-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <Badge variant="outline" className="px-4 py-2 text-sm border-primary/30 bg-primary/5 text-primary hover:bg-primary/10">
-              <Zap className="w-4 h-4 mr-2" />
-              New: Multi-cloud deployment now available
-              <ArrowRight className="w-3 h-3 ml-2" />
+            <Badge variant="outline" className="px-4 py-2 text-sm border-primary/30 bg-primary/5 text-primary">
+              <ShieldCheck className="w-4 h-4 mr-2" />
+              New: Private cloud and on‑prem now available
             </Badge>
           </div>
 
-          {/* Main Headline */}
           <div className={`space-y-6 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
-              <span className="text-foreground">Deploy AI at</span>{' '}
-              <span className="neural-gradient bg-clip-text text-transparent">
-                any scale
-              </span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-balance">
+              the secure context layer for your
+              <span className="block neural-gradient bg-clip-text text-transparent">code, docs, and ai</span>
             </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              The infrastructure platform that scales from prototype to production. 
-              Deploy models with <span className="text-primary font-semibold">zero configuration</span>, 
-              monitor performance in real-time, and scale globally with confidence.
+            <p className="text-lg md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              context engine connects to github/gitlab and technical documentation, indexes them into a unified, searchable knowledge base, and exposes fast apis and a developer dashboard so apps, ides, and ai assistants can retrieve the right snippet at the right time.
+            </p>
+            <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto">
+              built for security‑first teams with role‑based access, tokenized apis, audit trails, and deploy‑anywhere options (saas, private cloud, on‑prem).
             </p>
           </div>
 
-          {/* CTA Buttons */}
           <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Button size="lg" className="neural-gradient text-background font-semibold px-8 py-4 text-lg h-auto glow-primary group">
-              Start Building
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            
-            <Button variant="outline" size="lg" className="border-primary/30 text-foreground hover:bg-primary/5 px-8 py-4 text-lg h-auto group">
-              <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
-              Watch Demo
-            </Button>
+            <a href="/signup">
+              <Button size="lg" variant="neural" className="px-8 py-4 text-lg h-auto rounded-full group">
+                start free
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
+            <a href="#features">
+              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/5 px-8 py-4 text-lg h-auto rounded-full group">
+                <Play className="mr-2 w-5 h-5" />
+                see how it works
+              </Button>
+            </a>
           </div>
 
-          {/* Social Proof */}
-          <div className={`text-sm text-muted-foreground transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            Trusted by 2,500+ AI teams • No credit card required • 7-day free trial
-          </div>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left max-w-3xl mx-auto text-sm text-muted-foreground">
+            {valueBullets.map((v, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary" />
+                <span>{v}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Interactive Dashboard Preview */}
-        <div className={`relative max-w-6xl mx-auto transition-all duration-1200 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <div className="neural-glass rounded-2xl overflow-hidden infrastructure-glow">
-            {/* Dashboard Header */}
-            <div className="bg-card/80 backdrop-blur-xl border-b border-primary/20 p-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 neural-gradient rounded-lg flex items-center justify-center">
-                    <Activity className="w-5 h-5 text-background" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">Infrastructure Console</h3>
-                    <p className="text-sm text-muted-foreground">Real-time deployment monitoring</p>
-                  </div>
+        {/* Product Preview */}
+        <div className={`relative max-w-6xl mx-auto transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+          <div className="neural-glass rounded-2xl overflow-hidden">
+            <div className="bg-card/80 border-b border-primary/15 p-4 md:p-6 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 neural-gradient rounded-lg flex items-center justify-center text-background">
+                  <Database className="w-5 h-5" />
                 </div>
-                
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-1">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                    <span className="text-sm text-muted-foreground">Live</span>
-                  </div>
-                  <Badge variant="secondary" className="bg-secondary/20 text-secondary">
-                    Production
-                  </Badge>
+                <div>
+                  <h3 className="font-semibold">Context Engine Dashboard</h3>
+                  <p className="text-sm text-muted-foreground">Connections • Indexing • Search • Security</p>
                 </div>
+              </div>
+              <div className="hidden md:flex items-center gap-3">
+                <Badge variant="secondary" className="bg-secondary/20 text-secondary">SSO</Badge>
+                <Badge variant="outline" className="text-muted-foreground">RBAC</Badge>
+                <Badge variant="outline" className="text-muted-foreground">Audit</Badge>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[500px]">
-              {/* Left: Terminal */}
-              <div className="lg:col-span-1 bg-background/50 p-6 border-r border-primary/10">
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <Terminal className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium text-foreground">Deploy Console</span>
-                  </div>
-                  
-                  <div className="code-block space-y-2 text-sm">
-                    {terminalCommands.slice(0, terminalLines + 1).map((cmd, index) => (
-                      <div
-                        key={index}
-                        className={`terminal-text animate-slide-up-fade ${
-                          cmd.startsWith('$') ? 'text-primary' : 
-                          cmd.startsWith('✓') ? 'text-success' : 
-                          cmd.startsWith('→') ? 'text-secondary' : 'text-muted-foreground'
-                        }`}
-                        style={{ animationDelay: `${index * 0.3}s` }}
-                      >
-                        {cmd}
-                        {index === terminalLines && cmd.startsWith('$') && (
-                          <span className="animate-terminal-cursor">|</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[480px]">
+              {/* Left: Connections */}
+              <div className="p-6 border-r border-primary/10">
+                <div className="flex items-center gap-2 mb-4">
+                  <Github className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">Connections</span>
                 </div>
-              </div>
-
-              {/* Center: Metrics */}
-              <div className="lg:col-span-1 p-6 border-r border-primary/10">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <BarChart3 className="w-4 h-4 text-secondary" />
-                    <span className="text-sm font-medium text-foreground">Live Metrics</span>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    {metrics.map((metric, index) => (
-                      <div
-                        key={index}
-                        className={`infrastructure-card p-4 rounded-lg transition-all duration-500 ${
-                          activeMetric === index ? 'border-primary/40 glow-primary' : ''
-                        }`}
-                      >
-                        <div className="flex items-center space-x-2 mb-2">
-                          <metric.icon className={`w-4 h-4 ${metric.color}`} />
-                          <span className="text-xs text-muted-foreground">{metric.label}</span>
+                <div className="space-y-3">
+                  {[
+                    { name: 'GitHub • monorepo', status: 'synced' },
+                    { name: 'GitLab • services', status: 'indexing' },
+                    { name: 'Docs • handbook', status: 'synced' },
+                  ].map((c, i) => (
+                    <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="h-6 w-6 rounded-md bg-primary/15 text-primary flex items-center justify-center">
+                          <span className="text-[10px] font-mono">{i+1}</span>
                         </div>
-                        <div className="text-lg font-bold text-foreground">{metric.value}</div>
+                        <span className="text-sm">{c.name}</span>
                       </div>
-                    ))}
-                  </div>
-
-                  {/* Performance Graph Placeholder */}
-                  <div className="infrastructure-card p-4 rounded-lg">
-                    <h4 className="text-sm font-medium text-foreground mb-3">Request Latency</h4>
-                    <div className="flex items-end space-x-1 h-20">
-                      {Array.from({ length: 12 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className="bg-primary/30 rounded-t flex-1 animate-infrastructure-glow"
-                          style={{
-                            height: `${Math.random() * 60 + 20}%`,
-                            animationDelay: `${i * 0.1}s`
-                          }}
-                        />
-                      ))}
+                      <Badge variant={c.status === 'synced' ? 'secondary' : 'outline'} className={c.status === 'synced' ? 'bg-secondary/20 text-secondary' : ''}>{c.status}</Badge>
                     </div>
+                  ))}
+                </div>
+
+                <div className="mt-6">
+                  <div className="text-xs text-muted-foreground mb-2">Security</div>
+                  <div className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <LockKeyhole className="w-4 h-4 text-secondary" />
+                      <span className="text-sm">Token scope: read.repo, read.docs</span>
+                    </div>
+                    <Badge variant="outline">rotates in 23h</Badge>
                   </div>
                 </div>
               </div>
 
-              {/* Right: Model Status */}
-              <div className="lg:col-span-1 p-6">
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <Code className="w-4 h-4 text-accent" />
-                    <span className="text-sm font-medium text-foreground">Active Models</span>
-                  </div>
+              {/* Center: Search */}
+              <div className="p-6 border-r border-primary/10">
+                <div className="flex items-center gap-2 mb-4">
+                  <Search className="w-4 h-4 text-secondary" />
+                  <span className="text-sm font-medium">Semantic Search</span>
+                </div>
 
-                  <div className="space-y-3">
-                    {[
-                      { name: 'gpt-4-turbo', status: 'running', requests: '847/s', latency: '89ms' },
-                      { name: 'claude-3-opus', status: 'running', requests: '234/s', latency: '124ms' },
-                      { name: 'llama-2-70b', status: 'scaling', requests: '156/s', latency: '203ms' },
-                      { name: 'whisper-large', status: 'running', requests: '67/s', latency: '45ms' },
-                    ].map((model, index) => (
-                      <div key={index} className="infrastructure-card p-3 rounded-lg">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-foreground">{model.name}</span>
-                          <Badge 
-                            variant={model.status === 'running' ? 'default' : 'secondary'}
-                            className={
-                              model.status === 'running' 
-                                ? 'bg-primary/20 text-primary border-primary/30' 
-                                : 'bg-accent/20 text-accent border-accent/30'
-                            }
-                          >
-                            {model.status}
-                          </Badge>
-                        </div>
-                        <div className="flex justify-between text-xs text-muted-foreground">
-                          <span>{model.requests}</span>
-                          <span>{model.latency}</span>
-                        </div>
-                      </div>
-                    ))}
+                <div className="infrastructure-card p-3 rounded-lg mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">Query</span>
+                    <span className="px-2 py-1 rounded bg-muted text-sm">"how to refresh oauth tokens in node?"</span>
                   </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { title: 'auth.ts • refreshAccessToken()', source: 'apps/api/src/auth.ts', score: '0.92' },
+                    { title: 'OAuth guide • token lifetimes', source: 'docs/security/oauth.md', score: '0.88' },
+                    { title: 'client.ts • retryWithBackoff', source: 'packages/sdk/client.ts', score: '0.84' },
+                  ].map((r, i) => (
+                    <div key={i} className="infrastructure-card p-3 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="text-sm font-medium">{r.title}</div>
+                          <div className="text-xs text-muted-foreground">{r.source}</div>
+                        </div>
+                        <Badge variant="outline">relevance {r.score}</Badge>
+                      </div>
+                      <pre className="mt-3 text-xs terminal-text whitespace-pre-wrap">
+{`// snippet
+async function refreshAccessToken() { /* ... */ }`}
+                      </pre>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Indexing/Docs */}
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <BookOpenText className="w-4 h-4 text-accent" />
+                  <span className="text-sm font-medium">Indexing Status</span>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { label: 'Repos processed', value: '24/24' },
+                    { label: 'Docs pages indexed', value: '1,482' },
+                    { label: 'Embeddings updated', value: '98% today' },
+                  ].map((m, i) => (
+                    <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">{m.label}</span>
+                      <span className="text-sm font-medium">{m.value}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 text-xs text-muted-foreground">
+                  APIs: REST • GraphQL • SDKs (TS, Python)
                 </div>
               </div>
             </div>
