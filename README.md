@@ -54,7 +54,7 @@ Context Engine is the foundation for systems that:
 
 **Abdulazeez Usman**  
 Designing systems that make intelligence more *context-aware* and *human-aligned*.  
-📬 [LinkedIn](https://www.linkedin.com/in/abdulazeezusman) | [GitHub](https://github.com/<your-username>)
+📬 [LinkedIn](https://www.linkedin.com/in/abdulazeez-usman-912703244) | [GitHub](https://github.com/razaellweb)
 
 ---
 
