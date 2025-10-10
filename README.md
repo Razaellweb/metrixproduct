@@ -1,73 +1,63 @@
-# Welcome to your Lovable project
+# 🧩 Context Engine
 
-## Project info
+**Context Engine** is an intelligent system designed to help AI agents understand *context deeply and continuously*.  
+It captures, refines, and recalls information — so every interaction feels connected, informed, and aware.
 
-**URL**: https://lovable.dev/projects/bb45fe55-9940-4055-a46f-2de2effdefa7
+Instead of starting from zero each time, Context Engine gives your AI a **memory**, a **sense of history**, and the ability to **reason with awareness**.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 💡 What It Does
 
-**Use Lovable**
+- Tracks what matters in ongoing conversations or tasks  
+- Filters out noise while keeping relevant context alive  
+- Reconstructs meaningful summaries on demand  
+- Feeds the right information back into the system at the right time  
+- Keeps agents aligned with user intent, tone, and progress  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bb45fe55-9940-4055-a46f-2de2effdefa7) and start prompting.
+It’s not just about remembering — it’s about *understanding why something matters now*.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🎯 Why It Exists
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Modern AI systems are powerful but forgetful.  
+They lose track of the bigger picture, repeat questions, or miss subtle cues.  
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Context Engine** was built to solve that — to make agents feel consistent, helpful, and aware of past decisions.  
+It’s what makes an AI assistant *feel like it actually knows you*.
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🚀 How It Works (Conceptually)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. **Observe** — It monitors interactions or data streams.  
+2. **Extract** — It identifies key insights, decisions, and relationships.  
+3. **Store** — It keeps only the meaningful bits — not everything.  
+4. **Recall** — It retrieves just what’s needed when needed.  
 
-# Step 3: Install the necessary dependencies.
-npm i
+The result: a context loop that keeps intelligence grounded in understanding.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## 🌱 Vision
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Context Engine is the foundation for systems that:
+- Learn continuously without retraining  
+- Maintain long-term relationships with users  
+- Enable multi-agent collaboration with shared awareness  
+- Bridge the gap between *information* and *understanding*
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 👤 Author
 
-## What technologies are used for this project?
+**Abdulazeez Usman**  
+Designing systems that make intelligence more *context-aware* and *human-aligned*.  
+📬 [LinkedIn](https://www.linkedin.com/in/abdulazeezusman) | [GitHub](https://github.com/<your-username>)
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🪶 License
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/bb45fe55-9940-4055-a46f-2de2effdefa7) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Open-source under the **MIT License**.
