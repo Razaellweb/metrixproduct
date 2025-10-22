@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { 
-  Github,
-  GitBranch,
-  BookOpenText,
-  Search,
+  Gauge,
+  Coins,
   ShieldCheck,
   KeyRound,
-  ChartBarBig,
-  Boxes,
-  TerminalSquare,
-  PlugZap,
-  ArrowUpRight,
-  CheckCircle
+  Cpu,
+  ServerCog,
+  CheckCircle,
 } from 'lucide-react';
 
 const Features = () => {
@@ -20,28 +15,28 @@ const Features = () => {
   
   const features = [
     {
-      icon: Github,
-      title: "Connect repos and docs",
-      description: "Link GitHub/GitLab and technical documentation with continuous sync and dedupe.",
+      icon: Gauge,
+      title: "Real-time metering",
+      description: "Idempotent event ingestion with exactly-once semantics and low overhead.",
       details: [
-        "OAuth and token auth",
-        "Git monorepo support", 
-        "Docs crawler & sitemap",
-        "Incremental indexing"
+        "HTTP + SDK event APIs",
+        "Event de-duplication",
+        "Kafka-ready streaming",
+        "Usage exports"
       ],
       color: "text-primary",
       bgColor: "bg-primary/10",
       borderColor: "border-primary/30"
     },
     {
-      icon: Search,
-      title: "Hybrid search that understands",
-      description: "Keyword + semantic search returns relevant, source‑linked snippets you can trust.",
+      icon: Coins,
+      title: "Dynamic pricing engine",
+      description: "Tiered, volume, and per-seat pricing with proration and migrations.",
       details: [
-        "BM25 + embeddings",
-        "Repo/file ranking",
-        "Regex & code‑aware parsing",
-        "Natural language queries"
+        "Per-unit & tiered rules",
+        "Plan migration + proration",
+        "Threshold alerts",
+        "Coupons & credits"
       ],
       color: "text-secondary",
       bgColor: "bg-secondary/10", 
@@ -49,13 +44,13 @@ const Features = () => {
     },
     {
       icon: ShieldCheck,
-      title: "Enterprise‑grade security",
-      description: "SSO, RBAC, token scopes, and audit logs across all surfaces.",
+      title: "Entitlements & access",
+      description: "<50ms cached entitlement checks for features, limits, and flags.",
       details: [
-        "SAML/OIDC SSO",
-        "Role & project isolation",
-        "IP allow‑listing",
-        "Comprehensive audit trail"
+        "Feature gating",
+        "Limit enforcement",
+        "Org & user scopes",
+        "Audit logs"
       ],
       color: "text-accent",
       bgColor: "bg-accent/10",
@@ -63,41 +58,41 @@ const Features = () => {
     },
     {
       icon: KeyRound,
-      title: "Fast APIs & SDKs",
-      description: "Low‑latency APIs for context retrieval with SDKs for TypeScript and Python.",
+      title: "Stripe-powered billing",
+      description: "Subscriptions, invoices, and payment retries with hosted checkout.",
       details: [
-        "Token scopes & rotation",
-        "Batch context endpoints", 
-        "Rate limits & quotas",
-        "GraphQL + REST"
+        "Multi-currency",
+        "Tax basics (VAT/GST)",
+        "Dunning & webhooks",
+        "Customer portal"
       ],
       color: "text-primary",
       bgColor: "bg-primary/10",
       borderColor: "border-primary/30"
     },
     {
-      icon: ChartBarBig,
-      title: "Live dashboard",
-      description: "Indexing status, usage analytics, and search performance in one place.",
+      icon: Cpu,
+      title: "Developer-first SDKs",
+      description: "Node.js & Python with typed clients and test helpers.",
       details: [
-        "Usage per token/client",
-        "Top queries & misses",
-        "Indexing health",
-        "Exportable reports"
+        "Local sandbox",
+        "CLI utilities",
+        "Idempotency helpers",
+        "GraphQL + REST"
       ],
       color: "text-secondary",
       bgColor: "bg-secondary/10",
       borderColor: "border-secondary/30"
     },
     {
-      icon: PlugZap,
-      title: "Integrations & IDEs",
-      description: "Drop‑in integrations for assistants and IDEs to deliver context where work happens.",
+      icon: ServerCog,
+      title: "Dashboards & alerts",
+      description: "Real-time usage, billing health, retries, and threshold notifications.",
       details: [
-        "VS Code extension",
-        "JetBrains plugin", 
-        "Assistant webhooks",
-        "Slack/Chat integrations"
+        "Usage analytics",
+        "Retry insights",
+        "Alert webhooks",
+        "Exports & BI"
       ],
       color: "text-accent",
       bgColor: "bg-accent/10",
@@ -106,10 +101,10 @@ const Features = () => {
   ];
 
   const stats = [
-    { label: "Sources indexed", value: "10k+", subtext: "repos, docs, wikis" },
-    { label: "Avg query latency", value: "<120ms", subtext: "P95 across clusters" },
-    { label: "Enterprises", value: "200+", subtext: "security‑first teams" },
-    { label: "SDK installs", value: "50k+", subtext: "npm & pypi" }
+    { label: "Event throughput", value: "200k+/s", subtext: "horizontally scalable" },
+    { label: "Entitlement P95", value: "<50ms", subtext: "edge cached" },
+    { label: "Currencies", value: "30+", subtext: "Stripe supported" },
+    { label: "SDK installs", value: "10k+", subtext: "npm & PyPI" }
   ];
   
   return (
@@ -120,15 +115,15 @@ const Features = () => {
       <div className="relative max-w-7xl mx-auto space-y-20">
         <div className="text-center space-y-6 max-w-4xl mx-auto">
           <Badge variant="outline" className="px-4 py-2 border-primary/30 bg-primary/5 text-primary">
-            Build the context layer
+            Built for modern SaaS
           </Badge>
           
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-balance">
-            Index everything. Retrieve only what matters.
+            Meter, price, entitle, and bill—without the glue code
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Connect code and documentation, then ship intelligent search and retrieval to your apps, IDEs, and assistants with a single API.
+            Metrix unifies metering, pricing, entitlements, and billing so you can launch usage-based plans fast and scale with confidence.
           </p>
         </div>
 
@@ -146,15 +141,15 @@ const Features = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`infrastructure-card p-8 rounded-2xl group cursor-pointer transition-all duration-500 ${
+              className={`infrastructure-card p-8 rounded-2xl group cursor-pointer transition-all duration-300 ${
                 hoveredFeature === index 
-                  ? `${feature.borderColor} ${feature.bgColor} glow-primary` 
+                  ? `${feature.borderColor} ${feature.bgColor}` 
                   : 'border-border/50 hover:border-primary/30'
               }`}
               onMouseEnter={() => setHoveredFeature(index)}
               onMouseLeave={() => setHoveredFeature(null)}
             >
-              <div className={`w-14 h-14 rounded-xl ${feature.bgColor} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-14 h-14 rounded-xl ${feature.bgColor} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200`}>
                 <feature.icon className={`w-7 h-7 ${feature.color}`} />
               </div>
               
@@ -168,8 +163,8 @@ const Features = () => {
                   </p>
                 </div>
 
-                <div className={`space-y-2 transition-all duration-300 ${
-                  hoveredFeature === index ? 'opacity-100 max-h-40' : 'opacity-70 max-h-0 overflow-hidden'
+                <div className={`space-y-2 transition-all duration-200 ${
+                  hoveredFeature === index ? 'opacity-100 max-h-40' : 'opacity-80 max-h-0 overflow-hidden'
                 }`}>
                   {feature.details.map((detail, detailIndex) => (
                     <div key={detailIndex} className="flex items-center space-x-2 text-sm">
@@ -179,35 +174,17 @@ const Features = () => {
                   ))}
                 </div>
 
-                <div className={`pt-2 transition-all duration-300 ${
+                <div className={`pt-2 transition-all duration-200 ${
                   hoveredFeature === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
                 }`}>
                   <button className={`flex items-center space-x-1 text-sm font-medium ${feature.color} hover:underline group`}>
                     <span>Learn more</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </button>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center space-y-6 pt-12">
-          <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
-            Ship context to where work happens
-          </h3>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Use the APIs to inject relevant snippets into PR bots, IDE code actions, and your AI assistants.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <a href="/signup" className="neural-gradient px-8 py-4 rounded-lg text-background font-semibold text-lg hover:scale-105 transition-transform glow-primary">
-              Start free
-            </a>
-            <a href="#pricing" className="px-8 py-4 rounded-lg border border-primary/30 text-foreground hover:bg-primary/5 transition-colors">
-              View pricing
-            </a>
-          </div>
         </div>
       </div>
     </section>

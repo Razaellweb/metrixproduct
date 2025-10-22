@@ -5,33 +5,34 @@ import { Button } from '@/components/ui/button';
 const Pricing = () => {
   const plans = [
     {
-      name: "Free",
+      name: "Starter",
       price: "$0",
       period: "/mo",
-      description: "For prototypes and small internal tools",
+      description: "Launch fast with a generous free tier",
       features: [
-        "10k API calls/mo",
-        "1 source (repo or docs)",
-        "Basic indexing",
+        "100k metered events/mo",
+        "1 pricing plan",
+        "Stripe integration",
         "Community support"
       ],
-      buttonText: "Start free",
+      usage: "overage: $0.30 / 1k events",
+      buttonText: "Get started free",
       buttonHref: "/signup",
       popular: false
     },
     {
-      name: "Team",
-      price: "$199",
+      name: "Growth",
+      price: "$299",
       period: "/mo",
-      description: "For growing teams shipping assistants & IDE integrations",
+      description: "Scale usage-based plans with confidence",
       features: [
-        "1M API calls/mo",
-        "Unlimited sources",
-        "Hybrid search (BM25 + semantic)",
-        "Dashboard & analytics",
-        "Token scopes & rotation",
+        "10M events/mo included",
+        "Unlimited pricing rules",
+        "Entitlements API (<50ms)",
+        "Threshold alerts + webhooks",
         "Email & chat support"
       ],
+      usage: "overage: $0.18 / 1k events",
       buttonText: "Start 14‑day trial",
       buttonHref: "/signup",
       popular: true
@@ -40,17 +41,17 @@ const Pricing = () => {
       name: "Enterprise",
       price: "Custom",
       period: "",
-      description: "For security‑first organizations and private deployments",
+      description: "Security, scale, and deployment flexibility",
       features: [
-        "SSO (SAML/OIDC) & RBAC",
-        "On‑prem or private cloud",
-        "Audit logs & SIEM export",
-        "Dedicated cluster",
-        "SLA & solutions engineer",
-        "Custom quotas & pricing"
+        "SSO/RBAC & audit logs",
+        "Multi‑currency + VAT/GST",
+        "Dedicated infra & SLA",
+        "Private cloud or on‑prem",
+        "Solutions engineer"
       ],
+      usage: "tier‑based pricing",
       buttonText: "Contact sales",
-      buttonHref: "#contact",
+      buttonHref: "#cta",
       popular: false
     }
   ];
@@ -60,10 +61,10 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
-            Simple, usage‑based pricing
+            Simple subscription + usage
           </h2>
           <p className="text-muted-foreground text-lg">
-            Start free. Scale with your usage. Enterprise licensing available.
+            Start free. Scale with usage‑based fees. Fair and predictable pricing as you grow.
           </p>
         </div>
         
@@ -73,7 +74,7 @@ const Pricing = () => {
               key={index}
               className={`p-6 rounded-xl border flex flex-col h-full ${
                 plan.popular 
-                  ? "border-primary/50 bg-card glow-primary" 
+                  ? "border-primary/50 bg-card" 
                   : "border-border bg-card"
               } transition-all duration-300 relative`}
             >
@@ -92,7 +93,7 @@ const Pricing = () => {
                 
                 <p className="text-muted-foreground mb-6">{plan.description}</p>
                 
-                <div className="space-y-3 mb-8">
+                <div className="space-y-3 mb-6">
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center text-primary">
@@ -104,13 +105,15 @@ const Pricing = () => {
                     </div>
                   ))}
                 </div>
+                <div className="text-xs text-muted-foreground">{plan.usage}</div>
               </div>
               
               <div className="mt-6">
                 <a href={plan.buttonHref}>
                   <Button 
-                    className={plan.popular ? "w-full" : "w-full"}
+                    className={"w-full"}
                     variant={plan.popular ? "default" : "outline"}
+                    data-event-name={`cta_pricing_${plan.name.toLowerCase()}`}
                   >
                     {plan.buttonText}
                   </Button>
@@ -120,8 +123,8 @@ const Pricing = () => {
           ))}
         </div>
         
-        <div className="text-center text-muted-foreground">
-          Need a custom deployment? <a href="#contact" className="text-primary hover:underline">Talk to sales</a>
+        <div className="text-center text-muted-foreground text-sm">
+          Prices in USD unless noted. Taxes may apply. Usage billed monthly.
         </div>
       </div>
     </section>

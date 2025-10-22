@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
-import { Menu, X, CircleDot, DollarSign, Sun, Moon, HelpCircle, Mail } from 'lucide-react';
+import { Menu, X, Layers, CreditCard, Sun, Moon, Boxes } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
@@ -10,7 +10,7 @@ import { Switch } from '@/components/ui/switch';
 const Header = () => {
   const [activePage, setActivePage] = useState('features');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   
   useEffect(() => {
     if (isDarkMode) {
@@ -63,7 +63,27 @@ const Header = () => {
                 )}
                 onClick={handleNavClick('features')}
               >
-                <CircleDot size={16} className="inline-block mr-1.5" /> Features
+                <Layers size={16} className="inline-block mr-1.5" /> Features
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="how"
+                className={cn(
+                  "px-4 py-2 rounded-full transition-colors relative",
+                  activePage === 'how' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                )}
+                onClick={handleNavClick('how')}
+              >
+                <Boxes size={16} className="inline-block mr-1.5" /> How it works
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="integrations" 
+                className={cn(
+                  "px-4 py-2 rounded-full transition-colors relative",
+                  activePage === 'integrations' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                )}
+                onClick={handleNavClick('integrations')}
+              >
+                <Layers size={16} className="inline-block mr-1.5" /> Integrations
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="pricing" 
@@ -73,27 +93,7 @@ const Header = () => {
                 )}
                 onClick={handleNavClick('pricing')}
               >
-                <DollarSign size={16} className="inline-block mr-1.5" /> Pricing
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="faq" 
-                className={cn(
-                  "px-4 py-2 rounded-full transition-colors relative",
-                  activePage === 'faq' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                )}
-                onClick={handleNavClick('faq')}
-              >
-                <HelpCircle size={16} className="inline-block mr-1.5" /> FAQ
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="contact" 
-                className={cn(
-                  "px-4 py-2 rounded-full transition-colors relative",
-                  activePage === 'contact' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                )}
-                onClick={handleNavClick('contact')}
-              >
-                <Mail size={16} className="inline-block mr-1.5" /> Contact
+                <CreditCard size={16} className="inline-block mr-1.5" /> Pricing
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
@@ -104,16 +104,16 @@ const Header = () => {
           <div className="md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-md py-4 px-6 border border-border rounded-2xl shadow-lg z-50">
             <div className="flex flex-col gap-4">
               <a href="#features" className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'features' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} onClick={handleNavClick('features')}>
-                <CircleDot size={16} className="inline-block mr-1.5" /> Features
+                <Layers size={16} className="inline-block mr-1.5" /> Features
+              </a>
+              <a href="#how" className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'how' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} onClick={handleNavClick('how')}>
+                <Boxes size={16} className="inline-block mr-1.5" /> How it works
+              </a>
+              <a href="#integrations" className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'integrations' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} onClick={handleNavClick('integrations')}>
+                <Layers size={16} className="inline-block mr-1.5" /> Integrations
               </a>
               <a href="#pricing" className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'pricing' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} onClick={handleNavClick('pricing')}>
-                <DollarSign size={16} className="inline-block mr-1.5" /> Pricing
-              </a>
-              <a href="#faq" className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'faq' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} onClick={handleNavClick('faq')}>
-                <HelpCircle size={16} className="inline-block mr-1.5" /> FAQ
-              </a>
-              <a href="#contact" className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'contact' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} onClick={handleNavClick('contact')}>
-                <Mail size={16} className="inline-block mr-1.5" /> Contact
+                <CreditCard size={16} className="inline-block mr-1.5" /> Pricing
               </a>
               
               <div className="flex items-center justify-between px-3 py-2">
@@ -126,7 +126,7 @@ const Header = () => {
               </div>
               
               <a href="/signup" className="w-full">
-                <Button className="w-full" variant="neural">Start free</Button>
+                <Button className="w-full" variant="neural" data-event-name="cta_top_get_started">get started free</Button>
               </a>
             </div>
           </div>
@@ -139,7 +139,7 @@ const Header = () => {
             <Sun size={18} className={`${!isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
           </div>
           <a href="/signup">
-            <Button variant="neural" className="rounded-full">Start free</Button>
+            <Button variant="neural" className="rounded-full" data-event-name="cta_top_get_started">get started free</Button>
           </a>
           <div className="rounded-2xl">
             <Button variant="ghost" className="text-muted-foreground hover:text-foreground hover:bg-muted rounded-full">Log in</Button>

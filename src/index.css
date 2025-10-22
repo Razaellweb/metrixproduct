@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    /* Brand: blue/teal on warm neutrals */
-    --background: 220 18% 6%; /* near-black */
+    /* Neutral base (dark) */
+    --background: 220 18% 6%;
     --foreground: 210 20% 98%;
 
     --card: 220 14% 10%;
@@ -17,16 +17,27 @@
     --popover: 220 14% 10%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 210 92% 56%; /* azure blue */
+    /* Accent family (low-chroma cyan, OKLCH reference ramps) */
+    --oklch-accent-1: oklch(0.97 0.01 200);
+    --oklch-accent-2: oklch(0.9 0.03 200);
+    --oklch-accent-3: oklch(0.82 0.05 200);
+    --oklch-accent-4: oklch(0.74 0.07 200);
+    --oklch-accent-5: oklch(0.66 0.09 200);
+    --oklch-accent-6: oklch(0.58 0.11 200);
+    --oklch-accent-7: oklch(0.5 0.13 200);
+    --oklch-accent-8: oklch(0.42 0.15 200);
+
+    /* Map to HSL tokens for Tailwind */
+    --primary: 210 92% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 186 92% 45%; /* teal */
+    --secondary: 192 85% 45%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 220 14% 16%;
     --muted-foreground: 220 10% 72%;
 
-    --accent: 192 95% 50%; /* cyan/teal accent */
+    --accent: 192 70% 46%;
     --accent-foreground: 0 0% 6%;
 
     --destructive: 0 84% 60%;
@@ -34,17 +45,17 @@
 
     --border: 220 14% 18%;
     --input: 220 14% 18%;
-    --ring: 210 92% 56%;
+    --ring: 210 92% 52%;
 
-    --success: 161 94% 36%;
+    --success: 161 50% 40%;
     --warning: 38 92% 50%;
-    --info: 199 89% 48%;
+    --info: 199 70% 48%;
 
     /* Gradients */
-    --gradient-primary-from: 210 92% 56%;
-    --gradient-primary-to: 186 92% 45%;
-    --gradient-secondary-from: 192 95% 50%;
-    --gradient-secondary-to: 210 92% 56%;
+    --gradient-primary-from: 210 92% 52%;
+    --gradient-primary-to: 192 85% 45%;
+    --gradient-secondary-from: 192 70% 46%;
+    --gradient-secondary-to: 210 92% 52%;
 
     --radius: 0.9rem;
   }
@@ -59,26 +70,26 @@
     --popover: 210 20% 98%;
     --popover-foreground: 224 8% 10%;
 
-    --primary: 210 92% 46%;
+    --primary: 210 92% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 186 92% 42%;
+    --secondary: 192 70% 42%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 20% 95%;
     --muted-foreground: 224 6% 35%;
 
-    --accent: 192 95% 46%;
+    --accent: 192 65% 44%;
     --accent-foreground: 0 0% 100%;
 
     --border: 210 18% 88%;
     --input: 210 18% 90%;
-    --ring: 210 92% 46%;
+    --ring: 210 92% 40%;
 
-    --gradient-primary-from: 210 92% 46%;
-    --gradient-primary-to: 186 92% 42%;
-    --gradient-secondary-from: 192 95% 46%;
-    --gradient-secondary-to: 210 92% 46%;
+    --gradient-primary-from: 210 92% 40%;
+    --gradient-primary-to: 192 70% 42%;
+    --gradient-secondary-from: 192 65% 44%;
+    --gradient-secondary-to: 210 92% 40%;
   }
 
   * {
@@ -124,7 +135,7 @@
       hsl(var(--accent)) 100%);
     z-index: -1;
     border-radius: inherit;
-    opacity: 0.08;
+    opacity: 0.07;
     filter: blur(8px);
   }
 
@@ -144,8 +155,8 @@
   /* Animated grid */
   .animated-grid {
     background-image: 
-      linear-gradient(hsl(var(--primary) / 0.18) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--primary) / 0.18) 1px, transparent 1px);
+      linear-gradient(hsl(var(--primary) / 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.14) 1px, transparent 1px);
     background-size: 60px 60px;
     animation: grid-flow 20s linear infinite;
   }
@@ -176,7 +187,7 @@
   
   .infrastructure-card {
     @apply bg-card/60 border border-primary/15 backdrop-blur-sm;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease-out;
   }
 
   .infrastructure-card:hover {
@@ -186,12 +197,12 @@
   }
   
   .glow-primary {
-    filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.4));
-    transition: filter 0.3s ease;
+    filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.35));
+    transition: filter 0.2s ease-out;
   }
-  .glow-primary:hover { filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.55)); }
-  .glow-secondary { filter: drop-shadow(0 0 12px hsl(var(--secondary) / 0.4)); }
-  .glow-accent { filter: drop-shadow(0 0 12px hsl(var(--accent) / 0.4)); }
+  .glow-primary:hover { filter: drop-shadow(0 0 18px hsl(var(--primary) / 0.48)); }
+  .glow-secondary { filter: drop-shadow(0 0 12px hsl(var(--secondary) / 0.35)); }
+  .glow-accent { filter: drop-shadow(0 0 12px hsl(var(--accent) / 0.35)); }
 
   /* Terminal/Code styling */
   .terminal-text {
@@ -212,4 +223,15 @@
   ::-webkit-scrollbar-track { @apply bg-background; }
   ::-webkit-scrollbar-thumb { @apply bg-primary/30 rounded-full; }
   ::-webkit-scrollbar-thumb:hover { @apply bg-primary/45; }
+
+  /* Micro-accents (3–6% coverage) */
+  .micro-accent {
+    box-shadow: 0 0 0 1px hsl(var(--accent) / 0.15), inset 0 0 0 1px hsl(var(--accent) / 0.08);
+    transition: box-shadow 180ms ease-out, transform 180ms ease-out;
+  }
+  .micro-accent:hover, .micro-accent:focus {
+    box-shadow: 0 0 0 1px hsl(var(--accent) / 0.25), 0 0 0 6px hsl(var(--accent) / 0.06);
+    transform: translateY(-1px);
+    outline: none;
+  }
 }

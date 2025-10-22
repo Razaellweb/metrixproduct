@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Play, ShieldCheck, Github, Search, BookOpenText, Database, LockKeyhole } from 'lucide-react';
+import { ArrowRight, Play, ShieldCheck, Gauge, CreditCard, ServerCog, Zap, Coins } from 'lucide-react';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState<'search' | 'index' | 'security'>('search');
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 150);
-    const cycle = setInterval(() => {
-      setActiveTab((prev) => (prev === 'search' ? 'index' : prev === 'index' ? 'security' : 'search'))
-    }, 3500);
-    return () => { clearTimeout(timer); clearInterval(cycle); };
+    return () => clearTimeout(timer);
   }, []);
 
   const valueBullets = [
-    'instant connections to repos and docs: github/gitlab ingest, doc indexing, and continuous sync.',
-    'relevance that developers trust: hybrid keyword + semantic search returns deduped, source‑linked snippets.',
-    'enterprise‑grade security: sso, rbac, token scopes, audit logs, and private deployments.',
-    'made for ai and dev workflows: simple apis/sdks, ide integrations, and usage analytics in a live dashboard.'
+    'real-time metering apis with idempotent event tracking',
+    'dynamic pricing rules with plan migration & proration',
+    'stripe-powered billing with multi-currency + tax basics',
+    'low-latency entitlement checks (<50ms) with caching',
   ];
 
   return (
@@ -27,39 +23,39 @@ const HeroSection = () => {
       <div className="absolute inset-0 neural-grid opacity-15" />
       <div className="absolute inset-0 animated-grid opacity-10" />
 
-      <div className="absolute top-20 left-16 w-28 h-28 neural-gradient rounded-full opacity-20 blur-2xl" />
-      <div className="absolute bottom-24 right-16 w-36 h-36 neural-gradient-secondary rounded-full opacity-20 blur-2xl" />
+      <div className="absolute top-20 left-16 w-28 h-28 neural-gradient rounded-full opacity-15 blur-2xl" />
+      <div className="absolute bottom-24 right-16 w-36 h-36 neural-gradient-secondary rounded-full opacity-15 blur-2xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center space-y-8 mb-16">
           <div className={`flex justify-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Badge variant="outline" className="px-4 py-2 text-sm border-primary/30 bg-primary/5 text-primary">
               <ShieldCheck className="w-4 h-4 mr-2" />
-              New: Private cloud and on‑prem now available
+              SOC 2 in-progress • GDPR-ready • PCI via Stripe
             </Badge>
           </div>
 
           <div className={`space-y-6 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-balance">
-              the secure context layer for your
-              <span className="block neural-gradient bg-clip-text text-transparent">code, docs, and ai</span>
+              power your growth with
+              <span className="block neural-gradient bg-clip-text text-transparent">precision usage‑based billing</span>
             </h1>
             <p className="text-lg md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              context engine connects to github/gitlab and technical documentation, indexes them into a unified, searchable knowledge base, and exposes fast apis and a developer dashboard so apps, ides, and ai assistants can retrieve the right snippet at the right time.
+              Metrix is the scalable platform for SaaS, AI, and API businesses—real‑time metering, dynamic pricing, entitlements, and Stripe billing in one reliable stack.
             </p>
             <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto">
-              built for security‑first teams with role‑based access, tokenized apis, audit trails, and deploy‑anywhere options (saas, private cloud, on‑prem).
+              SDKs for Node.js and Python, multi‑currency support, VAT/GST basics, threshold alerts, and robust failed payment handling.
             </p>
           </div>
 
           <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <a href="/signup">
-              <Button size="lg" variant="neural" className="px-8 py-4 text-lg h-auto rounded-full group">
-                start free
+              <Button size="lg" variant="neural" className="px-8 py-4 text-lg h-auto rounded-full group" data-event-name="cta_hero_get_started">
+                get started free
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
-            <a href="#features">
+            <a href="#how">
               <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/5 px-8 py-4 text-lg h-auto rounded-full group">
                 <Play className="mr-2 w-5 h-5" />
                 see how it works
@@ -83,32 +79,32 @@ const HeroSection = () => {
             <div className="bg-card/80 border-b border-primary/15 p-4 md:p-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 neural-gradient rounded-lg flex items-center justify-center text-background">
-                  <Database className="w-5 h-5" />
+                  <Gauge className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Context Engine Dashboard</h3>
-                  <p className="text-sm text-muted-foreground">Connections • Indexing • Search • Security</p>
+                  <h3 className="font-semibold">Metrix Billing Console</h3>
+                  <p className="text-sm text-muted-foreground">Metering • Pricing • Entitlements • Billing</p>
                 </div>
               </div>
               <div className="hidden md:flex items-center gap-3">
-                <Badge variant="secondary" className="bg-secondary/20 text-secondary">SSO</Badge>
-                <Badge variant="outline" className="text-muted-foreground">RBAC</Badge>
-                <Badge variant="outline" className="text-muted-foreground">Audit</Badge>
+                <Badge variant="secondary" className="bg-secondary/20 text-secondary">Multi‑currency</Badge>
+                <Badge variant="outline" className="text-muted-foreground">Idempotent events</Badge>
+                <Badge variant="outline" className="text-muted-foreground"><span aria-hidden>~</span>50ms checks</Badge>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[480px]">
-              {/* Left: Connections */}
+              {/* Left: Metered Events */}
               <div className="p-6 border-r border-primary/10">
                 <div className="flex items-center gap-2 mb-4">
-                  <Github className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium">Connections</span>
+                  <Zap className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">Metered Events</span>
                 </div>
                 <div className="space-y-3">
                   {[
-                    { name: 'GitHub • monorepo', status: 'synced' },
-                    { name: 'GitLab • services', status: 'indexing' },
-                    { name: 'Docs • handbook', status: 'synced' },
+                    { name: 'tokens.generated', status: 'accepted' },
+                    { name: 'api.requests', status: 'accepted' },
+                    { name: 'seats.active', status: 'queued' },
                   ].map((c, i) => (
                     <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -117,70 +113,61 @@ const HeroSection = () => {
                         </div>
                         <span className="text-sm">{c.name}</span>
                       </div>
-                      <Badge variant={c.status === 'synced' ? 'secondary' : 'outline'} className={c.status === 'synced' ? 'bg-secondary/20 text-secondary' : ''}>{c.status}</Badge>
+                      <Badge variant={c.status === 'accepted' ? 'secondary' : 'outline'} className={c.status === 'accepted' ? 'bg-secondary/20 text-secondary' : ''}>{c.status}</Badge>
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-6">
-                  <div className="text-xs text-muted-foreground mb-2">Security</div>
+                  <div className="text-xs text-muted-foreground mb-2">Alerts</div>
                   <div className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <LockKeyhole className="w-4 h-4 text-secondary" />
-                      <span className="text-sm">Token scope: read.repo, read.docs</span>
+                      <ServerCog className="w-4 h-4 text-secondary" />
+                      <span className="text-sm">Threshold: api.requests > 1M</span>
                     </div>
-                    <Badge variant="outline">rotates in 23h</Badge>
+                    <Badge variant="outline">email + webhook</Badge>
                   </div>
                 </div>
               </div>
 
-              {/* Center: Search */}
+              {/* Center: Pricing */}
               <div className="p-6 border-r border-primary/10">
                 <div className="flex items-center gap-2 mb-4">
-                  <Search className="w-4 h-4 text-secondary" />
-                  <span className="text-sm font-medium">Semantic Search</span>
+                  <Coins className="w-4 h-4 text-secondary" />
+                  <span className="text-sm font-medium">Pricing Engine</span>
                 </div>
 
                 <div className="infrastructure-card p-3 rounded-lg mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground">Query</span>
-                    <span className="px-2 py-1 rounded bg-muted text-sm">"how to refresh oauth tokens in node?"</span>
+                    <span className="text-sm text-muted-foreground">Rule</span>
+                    <span className="px-2 py-1 rounded bg-muted text-sm">tiered tokens.generated</span>
                   </div>
                 </div>
                 <div className="space-y-3">
                   {[
-                    { title: 'auth.ts • refreshAccessToken()', source: 'apps/api/src/auth.ts', score: '0.92' },
-                    { title: 'OAuth guide • token lifetimes', source: 'docs/security/oauth.md', score: '0.88' },
-                    { title: 'client.ts • retryWithBackoff', source: 'packages/sdk/client.ts', score: '0.84' },
+                    { title: '0‑1M tokens', price: '$0.20 / 1k' },
+                    { title: '1M‑10M tokens', price: '$0.16 / 1k' },
+                    { title: '10M+ tokens', price: 'custom' },
                   ].map((r, i) => (
-                    <div key={i} className="infrastructure-card p-3 rounded-lg">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="text-sm font-medium">{r.title}</div>
-                          <div className="text-xs text-muted-foreground">{r.source}</div>
-                        </div>
-                        <Badge variant="outline">relevance {r.score}</Badge>
-                      </div>
-                      <pre className="mt-3 text-xs terminal-text whitespace-pre-wrap">
-{`// snippet
-async function refreshAccessToken() { /* ... */ }`}
-                      </pre>
+                    <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
+                      <div className="text-sm font-medium">{r.title}</div>
+                      <Badge variant="outline">{r.price}</Badge>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right: Indexing/Docs */}
+              {/* Right: Billing */}
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <BookOpenText className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-medium">Indexing Status</span>
+                  <CreditCard className="w-4 h-4 text-accent" />
+                  <span className="text-sm font-medium">Stripe Billing</span>
                 </div>
                 <div className="space-y-3">
                   {[
-                    { label: 'Repos processed', value: '24/24' },
-                    { label: 'Docs pages indexed', value: '1,482' },
-                    { label: 'Embeddings updated', value: '98% today' },
+                    { label: 'Invoices this month', value: '1,204' },
+                    { label: 'Failed payments auto‑recovered', value: '92%' },
+                    { label: 'Currencies active', value: 'USD • EUR • GBP' },
                   ].map((m, i) => (
                     <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
                       <span className="text-sm text-muted-foreground">{m.label}</span>
@@ -189,7 +176,7 @@ async function refreshAccessToken() { /* ... */ }`}
                   ))}
                 </div>
                 <div className="mt-4 text-xs text-muted-foreground">
-                  APIs: REST • GraphQL • SDKs (TS, Python)
+                  SDKs: Node.js • Python • REST
                 </div>
               </div>
             </div>
