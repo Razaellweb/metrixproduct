@@ -2,8 +2,7 @@ import { DashboardLayout } from "@/components/dashboard/Layout";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { ChartCard } from "@/components/charts/ChartCard";
-import { UsageAreaChart } from "@/components/charts/UsageAreaChart";
-import { LatencyLineChart } from "@/components/charts/LatencyLineChart";
+import { CompositeMetricsChart } from "@/components/charts/CompositeMetricsChart";
 import { useAuth } from "@/features/auth-context";
 import { usageSeries } from "@/features/mock";
 import { t } from "@/features/i18n";
@@ -28,14 +27,9 @@ export default function Overview() {
           </CardHeader>
           <div className="h-1 neural-gradient" />
           <CardContent>
-            <div className="text-xs text-muted-foreground">{t(locale, "your_sandbox_key")}</div>
-            <div className="font-mono text-lg select-all mt-1">{user?.apiKey ?? "mx_demo_key_123"}</div>
-            <div className="mt-4 grid sm:grid-cols-2 gap-4">
-              <ChartCard title="Usage events (30d)" subtitle={t(locale, "usage")}> 
-                <UsageAreaChart data={usageSeries} />
-              </ChartCard>
-              <ChartCard title="Latency & entitlement (ms)" subtitle="p50"> 
-                <LatencyLineChart data={usageSeries} />
+            <div className="mt-4">
+              <ChartCard title="System metrics (30d)" subtitle={t(locale, "usage")}> 
+                <CompositeMetricsChart data={usageSeries} />
               </ChartCard>
             </div>
           </CardContent>

@@ -1,26 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
 import { Menu, X, Layers, CreditCard, Sun, Moon, Boxes } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
+import { useTheme } from '@/features/theme-context';
 
 const Header = () => {
   const [activePage, setActivePage] = useState('features');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove('light-mode');
-      document.documentElement.classList.add('dark-mode');
-    } else {
-      document.documentElement.classList.remove('dark-mode');
-      document.documentElement.classList.add('light-mode');
-    }
-  }, [isDarkMode]);
+  const { isDarkMode, toggleTheme } = useTheme();
   
   const handleNavClick = (page: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -33,7 +24,6 @@ const Header = () => {
   };
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
     <div className="sticky top-0 z-50 pt-6 px-4">

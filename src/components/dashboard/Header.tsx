@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
 import { Sun, Moon, Globe, LogOut } from "lucide-react";
 import { useAuth } from "@/features/auth-context";
+import { useTheme } from "@/features/theme-context";
 import { t } from "@/features/i18n";
 
 function ThemeToggle() {
-  const [light, setLight] = useState(false);
-  useEffect(() => {
-    const root = document.documentElement;
-    if (light) root.classList.add("light-mode");
-    else root.classList.remove("light-mode");
-  }, [light]);
+  const { isDarkMode, toggleTheme } = useTheme();
   return (
     <button
       aria-label="Toggle theme"
-      onClick={() => setLight((v) => !v)}
+      onClick={toggleTheme}
       className="h-9 px-3 rounded-lg border border-border/60 bg-card/50 hover:bg-card transition-colors flex items-center gap-2"
     >
-      {light ? <Sun className="size-4" /> : <Moon className="size-4" />}
-      <span className="text-xs hidden sm:inline">{light ? "Light" : "Dark"}</span>
+      {!isDarkMode ? <Sun className="size-4" /> : <Moon className="size-4" />}
+      <span className="text-xs hidden sm:inline">{!isDarkMode ? "Light" : "Dark"}</span>
     </button>
   );
 }
