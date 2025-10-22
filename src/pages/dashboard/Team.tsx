@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { useAuth } from "@/features/auth-context";
 import { Role } from "@/features/types";
 import { useEffect, useMemo, useState } from "react";
+import { toast } from "@/components/ui/sonner";
 
 interface Member { id: string; name: string; email: string; role: Role; }
 
@@ -26,13 +27,14 @@ export default function Team() {
   }, [members, storageKey]);
 
   function addMember() {
-    if (!name.trim() || !email.trim()) return alert('Enter name and email');
+    if (!name.trim() || !email.trim()) { toast.error('Enter name and email'); return; }
     const m: Member = { id: crypto.randomUUID(), name: name.trim(), email: email.trim(), role };
     setMembers((prev) => [m, ...prev]);
     setName(""); setEmail(""); setRole('Developer');
+    toast.success('Member added');
   }
 
-  function removeMember(id: string) { setMembers((prev) => prev.filter(m => m.id !== id)); }
+  function removeMember(id: string) { setMembers((prev) => prev.filter(m => m.id !== id)); toast.success('Member removed'); }
 
   return (
     <DashboardLayout>

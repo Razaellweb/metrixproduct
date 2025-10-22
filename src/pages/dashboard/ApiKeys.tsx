@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { useAuth } from "@/features/auth-context";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { useEffect, useMemo, useState } from "react";
+import { toast } from "@/components/ui/sonner";
 
 interface ApiKey { id: string; name: string; key: string; createdAt: string; }
 
@@ -30,14 +31,16 @@ export default function ApiKeys() {
   }, [keys, storageKey]);
 
   function createKey() {
-    if (!name.trim()) return alert('Please enter a name');
+    if (!name.trim()) { toast.error('Please enter a name for the key'); return; }
     const k: ApiKey = { id: crypto.randomUUID(), name: name.trim(), key: generateKey(), createdAt: new Date().toISOString() };
     setKeys((prev) => [k, ...prev]);
     setName("");
+    toast.success('API key created');
   }
 
   function removeKey(id: string) {
     setKeys((prev) => prev.filter(k => k.id !== id));
+    toast.success('API key deleted');
   }
 
   function mask(k: string) {

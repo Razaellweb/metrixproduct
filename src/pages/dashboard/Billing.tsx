@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { defaultTiers } from "@/features/mock";
 import { useAuth } from "@/features/auth-context";
 import { t } from "@/features/i18n";
+import { toast } from "@/components/ui/sonner";
 
 export default function Billing() {
   const { user } = useAuth();
@@ -13,7 +14,7 @@ export default function Billing() {
   function selectPlan(id: string, basePrice: number) {
     localStorage.setItem('metrix_plan', id);
     localStorage.setItem('metrix_subscribed', basePrice > 0 ? 'true' : 'false');
-    alert(`Plan set to ${id}`);
+    toast.info(`Plan set to ${id}`);
   }
 
   return (
