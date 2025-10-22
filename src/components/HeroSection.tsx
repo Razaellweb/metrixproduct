@@ -12,10 +12,10 @@ const HeroSection = () => {
   }, []);
 
   const valueBullets = [
-    'real-time metering apis with idempotent event tracking',
-    'dynamic pricing rules with plan migration & proration',
-    'stripe-powered billing with multi-currency + tax basics',
-    'low-latency entitlement checks (<50ms) with caching',
+    'Real-time metering APIs',
+    'Dynamic pricing & plan updates',
+    'Stripe billing with tax support',
+    'Fast entitlement checks (<50ms)',
   ];
 
   return (
@@ -28,37 +28,63 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center space-y-8 mb-16">
-          <div className={`flex justify-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <Badge variant="outline" className="px-4 py-2 text-sm border-primary/30 bg-primary/5 text-primary">
+          <div
+            className={`flex justify-center transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            <Badge
+              variant="outline"
+              className="px-4 py-2 text-sm border-primary/30 bg-primary/5 text-primary"
+            >
               <ShieldCheck className="w-4 h-4 mr-2" />
-              SOC 2 in-progress • GDPR-ready • PCI via Stripe
+              SOC 2 In-Progress • GDPR-Ready • PCI via Stripe
             </Badge>
           </div>
 
-          <div className={`space-y-6 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div
+            className={`space-y-6 transition-all duration-1000 delay-200 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-balance">
-              power your growth with
-              <span className="block neural-gradient bg-clip-text text-transparent">precision usage‑based billing</span>
+              Power Your Growth With
+              <span className="block neural-gradient bg-clip-text text-transparent">
+                Precision Billing
+              </span>
             </h1>
-            <p className="text-lg md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Metrix is the scalable platform for SaaS, AI, and API businesses—real‑time metering, dynamic pricing, entitlements, and Stripe billing in one reliable stack.
+            <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Metrix helps SaaS, AI, and API platforms meter usage, price dynamically, and bill through Stripe — all in real time.
             </p>
-            <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto">
-              SDKs for Node.js and Python, multi‑currency support, VAT/GST basics, threshold alerts, and robust failed payment handling.
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+              SDKs for Node.js & Python. Multi-currency, VAT, and automated payment recovery built in.
             </p>
           </div>
 
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div
+            className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
             <a href="/signup">
-              <Button size="lg" variant="neural" className="px-8 py-4 text-lg h-auto rounded-full group" data-event-name="cta_hero_get_started">
-                get started free
+              <Button
+                size="lg"
+                variant="neural"
+                className="px-8 py-4 text-lg h-auto rounded-full group"
+                data-event-name="cta_hero_get_started"
+              >
+                Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
             <a href="#how">
-              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/5 px-8 py-4 text-lg h-auto rounded-full group">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-primary/30 hover:bg-primary/5 px-8 py-4 text-lg h-auto rounded-full group"
+              >
                 <Play className="mr-2 w-5 h-5" />
-                see how it works
+                See How It Works
               </Button>
             </a>
           </div>
@@ -74,7 +100,11 @@ const HeroSection = () => {
         </div>
 
         {/* Product Preview */}
-        <div className={`relative max-w-6xl mx-auto transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+        <div
+          className={`relative max-w-6xl mx-auto transition-all duration-1000 delay-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="neural-glass rounded-2xl overflow-hidden">
             <div className="bg-card/80 border-b border-primary/15 p-4 md:p-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -82,18 +112,24 @@ const HeroSection = () => {
                   <Gauge className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Metrix Billing Console</h3>
-                  <p className="text-sm text-muted-foreground">Metering • Pricing • Entitlements • Billing</p>
+                  <h3 className="font-semibold">Metrix Console</h3>
+                  <p className="text-sm text-muted-foreground">Metering • Pricing • Billing</p>
                 </div>
               </div>
               <div className="hidden md:flex items-center gap-3">
-                <Badge variant="secondary" className="bg-secondary/20 text-secondary">Multi‑currency</Badge>
-                <Badge variant="outline" className="text-muted-foreground">Idempotent events</Badge>
-                <Badge variant="outline" className="text-muted-foreground"><span aria-hidden>~</span>50ms checks</Badge>
+                <Badge variant="secondary" className="bg-secondary/20 text-secondary">
+                  Multi-Currency
+                </Badge>
+                <Badge variant="outline" className="text-muted-foreground">
+                  Idempotent Events
+                </Badge>
+                <Badge variant="outline" className="text-muted-foreground">
+                  <span aria-hidden>~</span>50ms Checks
+                </Badge>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[480px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[420px]">
               {/* Left: Metered Events */}
               <div className="p-6 border-r border-primary/10">
                 <div className="flex items-center gap-2 mb-4">
@@ -106,14 +142,26 @@ const HeroSection = () => {
                     { name: 'api.requests', status: 'accepted' },
                     { name: 'seats.active', status: 'queued' },
                   ].map((c, i) => (
-                    <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
+                    <div
+                      key={i}
+                      className="infrastructure-card p-3 rounded-lg flex items-center justify-between"
+                    >
                       <div className="flex items-center gap-2">
                         <div className="h-6 w-6 rounded-md bg-primary/15 text-primary flex items-center justify-center">
-                          <span className="text-[10px] font-mono">{i+1}</span>
+                          <span className="text-[10px] font-mono">{i + 1}</span>
                         </div>
                         <span className="text-sm">{c.name}</span>
                       </div>
-                      <Badge variant={c.status === 'accepted' ? 'secondary' : 'outline'} className={c.status === 'accepted' ? 'bg-secondary/20 text-secondary' : ''}>{c.status}</Badge>
+                      <Badge
+                        variant={c.status === 'accepted' ? 'secondary' : 'outline'}
+                        className={
+                          c.status === 'accepted'
+                            ? 'bg-secondary/20 text-secondary'
+                            : ''
+                        }
+                      >
+                        {c.status}
+                      </Badge>
                     </div>
                   ))}
                 </div>
@@ -123,9 +171,9 @@ const HeroSection = () => {
                   <div className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <ServerCog className="w-4 h-4 text-secondary" />
-                      <span className="text-sm">Threshold: api.requests > 1M</span>
+                      <span className="text-sm">Threshold: api.requests {'>'} 1M</span>
                     </div>
-                    <Badge variant="outline">email + webhook</Badge>
+                    <Badge variant="outline">Email + Webhook</Badge>
                   </div>
                 </div>
               </div>
@@ -134,22 +182,27 @@ const HeroSection = () => {
               <div className="p-6 border-r border-primary/10">
                 <div className="flex items-center gap-2 mb-4">
                   <Coins className="w-4 h-4 text-secondary" />
-                  <span className="text-sm font-medium">Pricing Engine</span>
+                  <span className="text-sm font-medium">Pricing</span>
                 </div>
 
                 <div className="infrastructure-card p-3 rounded-lg mb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-muted-foreground">Rule</span>
-                    <span className="px-2 py-1 rounded bg-muted text-sm">tiered tokens.generated</span>
+                    <span className="px-2 py-1 rounded bg-muted text-sm">
+                      Tiered tokens.generated
+                    </span>
                   </div>
                 </div>
                 <div className="space-y-3">
                   {[
-                    { title: '0‑1M tokens', price: '$0.20 / 1k' },
-                    { title: '1M‑10M tokens', price: '$0.16 / 1k' },
-                    { title: '10M+ tokens', price: 'custom' },
+                    { title: '0–1M Tokens', price: '$0.20 / 1k' },
+                    { title: '1M–10M Tokens', price: '$0.16 / 1k' },
+                    { title: '10M+ Tokens', price: 'Custom' },
                   ].map((r, i) => (
-                    <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
+                    <div
+                      key={i}
+                      className="infrastructure-card p-3 rounded-lg flex items-center justify-between"
+                    >
                       <div className="text-sm font-medium">{r.title}</div>
                       <Badge variant="outline">{r.price}</Badge>
                     </div>
@@ -161,15 +214,18 @@ const HeroSection = () => {
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <CreditCard className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-medium">Stripe Billing</span>
+                  <span className="text-sm font-medium">Billing</span>
                 </div>
                 <div className="space-y-3">
                   {[
-                    { label: 'Invoices this month', value: '1,204' },
-                    { label: 'Failed payments auto‑recovered', value: '92%' },
-                    { label: 'Currencies active', value: 'USD • EUR • GBP' },
+                    { label: 'Invoices This Month', value: '1,204' },
+                    { label: 'Recovered Payments', value: '92%' },
+                    { label: 'Active Currencies', value: 'USD • EUR • GBP' },
                   ].map((m, i) => (
-                    <div key={i} className="infrastructure-card p-3 rounded-lg flex items-center justify-between">
+                    <div
+                      key={i}
+                      className="infrastructure-card p-3 rounded-lg flex items-center justify-between"
+                    >
                       <span className="text-sm text-muted-foreground">{m.label}</span>
                       <span className="text-sm font-medium">{m.value}</span>
                     </div>
@@ -186,4 +242,5 @@ const HeroSection = () => {
     </section>
   );
 };
+
 export default HeroSection;
