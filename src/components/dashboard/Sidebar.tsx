@@ -1,20 +1,23 @@
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
-  Wallet,
-  Coins,
   FileSpreadsheet,
   LineChart,
   BookOpen,
+  KeyRound,
+  Users,
+  CreditCard,
 } from "lucide-react";
 import { useAuth } from "@/features/auth-context";
 import { t } from "@/features/i18n";
 
 const nav = [
   { to: "/dashboard", labelKey: "dashboard", icon: LayoutDashboard },
-  { to: "/dashboard/pricing", labelKey: "pricing", icon: Coins },
+  { to: "/dashboard/api-keys", labelKey: "api_keys", icon: KeyRound },
+  { to: "/dashboard/billing", labelKey: "billing", icon: CreditCard },
   { to: "/dashboard/invoices", labelKey: "invoices", icon: FileSpreadsheet },
   { to: "/dashboard/revenue", labelKey: "revenue", icon: LineChart },
+  { to: "/dashboard/team", labelKey: "team", icon: Users },
   { to: "/docs/quickstart", labelKey: "quickstart", icon: BookOpen },
 ];
 

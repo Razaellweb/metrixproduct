@@ -17,6 +17,9 @@ import Quickstart from "./pages/docs/Quickstart";
 import { AuthProvider } from "@/features/auth-context";
 import { ThemeProvider } from "@/features/theme-context";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import Billing from "./pages/dashboard/Billing";
+import ApiKeys from "./pages/dashboard/ApiKeys";
+import Team from "./pages/dashboard/Team";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +41,9 @@ const App = () => (
 
             {/* Dashboard (protected) */}
             <Route path="/dashboard" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
+            <Route path="/dashboard/billing" element={<ProtectedRoute><Billing /></ProtectedRoute>} />
+            <Route path="/dashboard/api-keys" element={<ProtectedRoute><ApiKeys /></ProtectedRoute>} />
+            <Route path="/dashboard/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
             <Route path="/dashboard/pricing" element={<ProtectedRoute><Pricing /></ProtectedRoute>} />
             <Route path="/dashboard/pricing/edit" element={<ProtectedRoute><PricingEdit /></ProtectedRoute>} />
             <Route path="/dashboard/invoices" element={<ProtectedRoute><Invoices /></ProtectedRoute>} />
