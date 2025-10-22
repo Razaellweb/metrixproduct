@@ -15,7 +15,6 @@ const THEME_STORAGE_KEY = 'metrix_theme';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('dark');
-  const [isInitialized, setIsInitialized] = useState(false);
 
   // Initialize theme from localStorage on mount
   useEffect(() => {
@@ -23,13 +22,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
       setThemeState(savedTheme);
     }
-    setIsInitialized(true);
   }, []);
 
   // Apply theme to document and save to localStorage
   useEffect(() => {
-    if (!isInitialized) return;
-
     const root = document.documentElement;
     
     if (theme === 'dark') {
@@ -41,7 +37,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
 
     localStorage.setItem(THEME_STORAGE_KEY, theme);
-  }, [theme, isInitialized]);
+  }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);

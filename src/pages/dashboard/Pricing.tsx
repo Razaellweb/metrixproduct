@@ -18,7 +18,7 @@ export default function Pricing() {
               <div className="text-sm text-muted-foreground">{t(locale, "pricing")}</div>
               <div className="font-semibold">Current Pricing Model</div>
             </div>
-            <Link to="/dashboard/pricing/edit" className="h-9 px-3 rounded-lg neural-gradient text-white inline-flex items-center">{t(locale, "edit_pricing")}</Link>
+            <div className="h-9 px-3 rounded-lg neural-gradient text-white inline-flex items-center">{t(locale, "edit_pricing")}</div>
           </div>
         </CardHeader>
         <CardContent>
