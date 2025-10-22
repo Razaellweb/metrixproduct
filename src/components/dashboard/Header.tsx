@@ -4,20 +4,20 @@ import { useAuth } from "@/features/auth-context";
 import { t } from "@/features/i18n";
 
 function ThemeToggle() {
-  const [light, setLight] = useState(false);
+  const [isDark, setIsDark] = useState(false); // default to light mode
   useEffect(() => {
     const root = document.documentElement;
-    if (light) root.classList.add("light-mode");
-    else root.classList.remove("light-mode");
-  }, [light]);
+    if (isDark) root.classList.add("dark");
+    else root.classList.remove("dark");
+  }, [isDark]);
   return (
     <button
       aria-label="Toggle theme"
-      onClick={() => setLight((v) => !v)}
+      onClick={() => setIsDark((v) => !v)}
       className="h-9 px-3 rounded-lg border border-border/60 bg-card/50 hover:bg-card transition-colors flex items-center gap-2"
     >
-      {light ? <Sun className="size-4" /> : <Moon className="size-4" />}
-      <span className="text-xs hidden sm:inline">{light ? "Light" : "Dark"}</span>
+      {isDark ? <Moon className="size-4" /> : <Sun className="size-4" />}
+      <span className="text-xs hidden sm:inline">{isDark ? "Dark" : "Light"}</span>
     </button>
   );
 }
