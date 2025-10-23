@@ -8,15 +8,21 @@ import { useState } from "react";
 
 const schema = z.object({
   email: z.string().email(),
-  password: z.string().min(8, "Password must be at least 8 characters").regex(/[A-Z]/, "Include an uppercase letter").regex(/[0-9]/, "Include a digit"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/[A-Z]/, "Include an uppercase letter")
+    .regex(/[0-9]/, "Include a digit"),
   confirm: z.string(),
-  role: z.enum(["Developer", "Product Manager", "Finance Team"]) ,
+  role: z.enum(["Developer", "Product Manager", "Finance Team"]),
 }).refine((d) => d.password === d.confirm, { path: ["confirm"], message: "Passwords do not match" });
 
 export default function Signup() {
   const { signup, user } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const locale = user?.locale ?? "en";
 
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
@@ -52,12 +58,48 @@ export default function Signup() {
           </div>
           <div>
             <label className="text-sm" htmlFor="password">{t(locale, "password")}</label>
-            <input id="password" type="password" className="mt-1 w-full h-11 rounded-lg border border-border/60 bg-card/50 px-3 outline-none focus:ring-2 focus:ring-primary" {...register("password")} />
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                aria-describedby="password-help"
+                className="mt-1 w-full h-11 rounded-lg border border-border/60 bg-card/50 px-3 pr-20 outline-none focus:ring-2 focus:ring-primary"
+                {...register("password")}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                aria-pressed={showPassword}
+                aria-label={showPassword ? t(locale, "hide_password") : t(locale, "show_password")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-foreground"
+              >
+                {showPassword ? t(locale, "hide_password") : t(locale, "show_password")}
+              </button>
+            </div>
+            <p id="password-help" className="text-xs text-muted-foreground mt-1">
+              {t(locale, "password_requirements")}
+            </p>
             {errors.password && <p className="text-xs text-destructive mt-1">{String(errors.password.message)}</p>}
           </div>
           <div>
             <label className="text-sm" htmlFor="confirm">{t(locale, "confirm_password")}</label>
-            <input id="confirm" type="password" className="mt-1 w-full h-11 rounded-lg border border-border/60 bg-card/50 px-3 outline-none focus:ring-2 focus:ring-primary" {...register("confirm")} />
+            <div className="relative">
+              <input
+                id="confirm"
+                type={showConfirm ? "text" : "password"}
+                className="mt-1 w-full h-11 rounded-lg border border-border/60 bg-card/50 px-3 pr-20 outline-none focus:ring-2 focus:ring-primary"
+                {...register("confirm")}
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirm((v) => !v)}
+                aria-pressed={showConfirm}
+                aria-label={showConfirm ? t(locale, "hide_password") : t(locale, "show_password")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-foreground"
+              >
+                {showConfirm ? t(locale, "hide_password") : t(locale, "show_password")}
+              </button>
+            </div>
             {errors.confirm && <p className="text-xs text-destructive mt-1">{String(errors.confirm.message)}</p>}
           </div>
           <div>

@@ -16,6 +16,7 @@ export default function Signin() {
   const { signin, user } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const locale = user?.locale ?? "en";
 
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
@@ -51,7 +52,23 @@ export default function Signin() {
           </div>
           <div>
             <label className="text-sm" htmlFor="password">{t(locale, "password")}</label>
-            <input id="password" type="password" className="mt-1 w-full h-11 rounded-lg border border-border/60 bg-card/50 px-3 outline-none focus:ring-2 focus:ring-primary" {...register("password")} />
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                className="mt-1 w-full h-11 rounded-lg border border-border/60 bg-card/50 px-3 pr-20 outline-none focus:ring-2 focus:ring-primary"
+                {...register("password")}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                aria-pressed={showPassword}
+                aria-label={showPassword ? t(locale, "hide_password") : t(locale, "show_password")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-foreground"
+              >
+                {showPassword ? t(locale, "hide_password") : t(locale, "show_password")}
+              </button>
+            </div>
             {errors.password && <p className="text-xs text-destructive mt-1">{String(errors.password.message)}</p>}
           </div>
           <div>

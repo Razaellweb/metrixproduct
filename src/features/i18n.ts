@@ -46,6 +46,9 @@ export const dictionaries: Record<Locale, Record<string, string>> = {
     subscribe: "Subscribe",
     current_usage: "Current usage",
     view_billing: "View billing",
+    password_requirements: "Use at least 8 characters, including 1 uppercase letter and 1 number.",
+    show_password: "Show",
+    hide_password: "Hide",
   },
   es: {
     app_name: "Metrix",
@@ -92,6 +95,9 @@ export const dictionaries: Record<Locale, Record<string, string>> = {
     subscribe: "Suscribirse",
     current_usage: "Uso actual",
     view_billing: "Ver facturación",
+    password_requirements: "Usa al menos 8 caracteres, incluyendo 1 mayúscula y 1 número.",
+    show_password: "Mostrar",
+    hide_password: "Ocultar",
   },
   fr: {
     app_name: "Metrix",
@@ -138,6 +144,9 @@ export const dictionaries: Record<Locale, Record<string, string>> = {
     subscribe: "S'abonner",
     current_usage: "Utilisation actuelle",
     view_billing: "Voir la facturation",
+    password_requirements: "Utilisez au moins 8 caractères, dont 1 majuscule et 1 chiffre.",
+    show_password: "Afficher",
+    hide_password: "Masquer",
   },
 };
 
