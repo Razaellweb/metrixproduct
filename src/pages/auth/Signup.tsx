@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/features/auth-context";
 import { useNavigate } from "react-router-dom";
 import { t } from "@/features/i18n";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { CheckCircle2, Circle } from "lucide-react";
 
 const schema = z.object({
   email: z.string().email(),
@@ -25,7 +26,7 @@ export default function Signup() {
   const [showConfirm, setShowConfirm] = useState(false);
   const locale = user?.locale ?? "en";
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
+  const { register, handleSubmit, formState: { errors }, watch } = useForm({ resolver: zodResolver(schema) });
 
   async function onSubmit(values: any) {
     setLoading(true);
@@ -33,6 +34,23 @@ export default function Signup() {
     setLoading(false);
     navigate("/dashboard");
   }
+
+  // Password live feedback
+  const passwordValue = watch("password") ?? "";
+  const reqs = useMemo(() => {
+    const length = passwordValue.length >= 8;
+    const upper = /[A-Z]/.test(passwordValue);
+    const number = /[0-9]/.test(passwordValue);
+    const symbol = /[^A-Za-z0-9]/.test(passwordValue);
+    const score = [length, upper, number, symbol].filter(Boolean).length;
+    let label: "weak" | "fair" | "good" | "strong" = "weak";
+    if (score >= 4 && passwordValue.length >= 12) label = "strong";
+    else if (score >= 3) label = "good";
+    else if (score >= 2) label = "fair";
+    else label = "weak";
+    const pct = label === "strong" ? 100 : label === "good" ? 75 : label === "fair" ? 50 : 25;
+    return { length, upper, number, symbol, score, label, pct };
+  }, [passwordValue]);
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
@@ -76,9 +94,41 @@ export default function Signup() {
                 {showPassword ? t(locale, "hide_password") : t(locale, "show_password")}
               </button>
             </div>
-            <p id="password-help" className="text-xs text-muted-foreground mt-1">
-              {t(locale, "password_requirements")}
-            </p>
+            {/* Interactive password feedback */}
+            <div id="password-help" className="mt-2 space-y-2" aria-live="polite" role="status">
+              {/* Strength bar */}
+              <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-accent transition-all duration-300"
+                  style={{ width: `${reqs.pct}%` }}
+                />
+              </div>
+              <div className="flex items-center justify-between text-[11px] uppercase tracking-wide text-muted-foreground">
+                <span>Strength</span>
+                <span className={reqs.label === "weak" ? "text-destructive" : reqs.label === "fair" ? "text-foreground/70" : reqs.label === "good" ? "text-primary" : "text-primary"}>
+                  {reqs.label}
+                </span>
+              </div>
+              {/* Requirements checklist */}
+              <ul className="grid grid-cols-2 gap-1.5 text-xs">
+                <li className="flex items-center gap-2">
+                  {reqs.length ? <CheckCircle2 size={14} className="text-primary" /> : <Circle size={14} className="text-muted-foreground" />}
+                  <span className={reqs.length ? "text-foreground" : "text-muted-foreground"}>8+ characters</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  {reqs.upper ? <CheckCircle2 size={14} className="text-primary" /> : <Circle size={14} className="text-muted-foreground" />}
+                  <span className={reqs.upper ? "text-foreground" : "text-muted-foreground"}>1 uppercase</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  {reqs.number ? <CheckCircle2 size={14} className="text-primary" /> : <Circle size={14} className="text-muted-foreground" />}
+                  <span className={reqs.number ? "text-foreground" : "text-muted-foreground"}>1 number</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  {reqs.symbol ? <CheckCircle2 size={14} className="text-primary" /> : <Circle size={14} className="text-muted-foreground" />}
+                  <span className={reqs.symbol ? "text-foreground" : "text-muted-foreground"}>symbol (recommended)</span>
+                </li>
+              </ul>
+            </div>
             {errors.password && <p className="text-xs text-destructive mt-1">{String(errors.password.message)}</p>}
           </div>
           <div>
